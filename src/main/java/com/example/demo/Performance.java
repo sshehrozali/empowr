@@ -7,17 +7,19 @@ import javax.persistence.Id;
 public class Performance {
 
     @Id
-    Integer ID;
-    String Performance;
+    private Integer ID;         // Primary Key
+    private String Performance; // Access By Admin Only
+    private String Feedback;  // Access By Employee Only
 
     // Empty Constructor
     public Performance() {
     }
 
     // Parameters Constructor
-    public Performance(Integer ID, String performance) {
+    public Performance(Integer ID, String performance, String feedback) {
         this.ID = ID;
         Performance = performance;
+        Feedback = feedback;
     }
 
     // Getters & Setters
@@ -35,5 +37,13 @@ public class Performance {
 
     public void setPerformance(String performance) {
         Performance = performance;
+    }
+
+    public String getFeedback() {
+        return Feedback;
+    }
+
+    public void setFeedback(String feedback) {
+        Feedback = feedback;
     }
 }

@@ -7,21 +7,19 @@ import javax.persistence.Id;
 public class Data {
 
     @Id
-    private Integer EmployeeID;
-    private String EmployeeName;
-    private boolean EmployeeParticipation;
-    private String Feedback;
+    private Integer EmployeeID; // Primary Key
+    private String EmployeeName;    // Employee Name
+    private boolean EmployeeParticipation;  // Access Given by Admin ONLY
 
     // Empty Constructor
     public Data() {
     }
 
     // Parameters Constructor
-    public Data(Integer employeeID, String employeeName, boolean employeeParticipation, String feedback) {
+    public Data(Integer employeeID, String employeeName, boolean employeeParticipation) {
         EmployeeID = employeeID;
         EmployeeName = employeeName;
         EmployeeParticipation = employeeParticipation;
-        Feedback = feedback;
     }
 
     // Getters & Setters
@@ -47,13 +45,5 @@ public class Data {
 
     public void setEmployeeParticipation(boolean employeeParticipation) {
         EmployeeParticipation = employeeParticipation;
-    }
-
-    public String getFeedback() {
-        return Feedback;
-    }
-
-    public void setFeedback(String feedback) {
-        Feedback = feedback;
     }
 }
