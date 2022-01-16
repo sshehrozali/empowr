@@ -2,6 +2,7 @@ package com.example.demo;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Optional;
 
 @Entity
 public class Performance {
@@ -43,7 +44,8 @@ public class Performance {
         return Feedback;
     }
 
-    public void setFeedback(String feedback) {
+    public Optional<com.example.demo.Performance> setFeedback(String feedback) {
         Feedback = feedback;
+        return null;
     }
 }
