@@ -44,8 +44,7 @@ public class Performance {
         return Feedback;
     }
 
-    public Optional<com.example.demo.Performance> setFeedback(String feedback) {
+    public void setFeedback(String feedback) {
         Feedback = feedback;
-        return null;
     }
 }
