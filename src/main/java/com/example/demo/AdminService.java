@@ -80,10 +80,14 @@ public class AdminService {
     }
     // Updates Employee Performance
     public void updateEmployeePerformance(Integer id, Performance performance) {
-//           if (performance != null && id != 0) {
-//               Optional<Data> checkData = databaseRepository.findById(id);
-//               if (che)
-//           }
+           if (performance != null && id != 0) {
+               Optional<Performance> checkPerformance = performanceRepository.findById((id));
+               if (checkPerformance != null) {
+                   Integer Key = checkPerformance.get().getKey();   // Get the Primary Key of the Employee from Performance Database
+                   performanceRepository.save(performance);         // Replace the old Employee Performance data with new one
+                   System.out.println("Performance Updated of Employee: " + databaseRepository.findById(Key).get().getEmployeeName());    // Get Employee Name By Using the same Primary Key from Employee Database
+               }
+           }
     }
 
     // ALL DELETE METHODS //
