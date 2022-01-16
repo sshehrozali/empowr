@@ -50,11 +50,14 @@ public class AdminService {
         if (performance != null) {
             Integer ID = performance.getKey();
             Optional<Data> Employee = databaseRepository.findById(ID);  // Fetch Employee data by using Key -> RDBMS
-            String Name = Employee.get().getEmployeeName();
-            System.out.println("Employee:" + Name + "Performance has been added");
+            // If Employee is Registered in Main Database -> Data -> Then add Employee Performance
+            if (Employee.isPresent()) {
+                String Name = Employee.get().getEmployeeName();
+                System.out.println("Employee: " + Name + " Performance has been added");
 
-            performanceRepository.save(performance);    // Add in Performance Database
-            System.out.println("Employee Performance Added");
+                performanceRepository.save(performance);    // Add in Performance Database
+                System.out.println("Employee Performance Added");
+            }
         } else {
             System.out.println("Data is Empty or Employee ID is not provided");
         }
@@ -77,7 +80,10 @@ public class AdminService {
     }
     // Updates Employee Performance
     public void updateEmployeePerformance(Integer id, Performance performance) {
-           // Use the same above function to update Employee's Performance (Re-Usability)
+//           if (performance != null && id != 0) {
+//               Optional<Data> checkData = databaseRepository.findById(id);
+//               if (che)
+//           }
     }
 
     // ALL DELETE METHODS //
