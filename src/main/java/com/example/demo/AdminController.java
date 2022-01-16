@@ -1,6 +1,8 @@
 package com.example.demo;// Import Database Packages -> Classes
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -56,9 +58,9 @@ public class AdminController {
     }
 
     // POST (Set Performance of the Employee by ID -> Primary Key)
-    @RequestMapping(method = RequestMethod.POST, value = "api/admin/performance/add/{id}")
-    public void addPerformance(@RequestBody Performance performance, @PathVariable Integer id) {
-        adminService.addEmployeePerformance(id, performance);
+    @RequestMapping(method = RequestMethod.POST, value = "api/admin/performance/add")
+    public void addPerformance(@RequestBody Performance performance) {
+        adminService.addEmployeePerformance(performance);
     }
 
     // PUT (Update Performance of the Employee by ID -> Primary Key)

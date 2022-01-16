@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class AdminService {
     public List<Data> viewAllData() {
         List<Data> data = new ArrayList<>();
         databaseRepository.findAll().forEach(data::add);
-        return data;
+        return data;    // Return all Employee Data if present otherwise []
     }
     // Specific Employee Data
     public Optional<Data> viewSpecificData(Integer id) {
@@ -31,32 +32,61 @@ public class AdminService {
     public List<Performance> showAllPerformances() {
         List<Performance> performances = new ArrayList<>();
         performanceRepository.findAll().forEach(performances::add);
-        return performances;
+        return performances;    // Return all Performances if present otherwise return []
     }
 
     // ALL POST METHODS //
     // Creates a new Employee
     public void createEmployee(Data data) {
-        databaseRepository.save(data);
+        // Save in Database if data passed is not NULL
+        if (data != null) {
+            databaseRepository.save(data);
+            System.out.println("Employee Data Saved");
+        }
     }
     // Sets New Performance for the Employee
-    public void addEmployeePerformance(Integer id, Performance performance) {
-        performanceRepository.save(performance);
+    public void addEmployeePerformance(Performance performance) {
+        // performance Object should not be NULL
+        if (performance != null) {
+            Integer ID = performance.getKey();
+            Optional<Data> Employee = databaseRepository.findById(ID);  // Fetch Employee data by using Key -> RDBMS
+            String Name = Employee.get().getEmployeeName();
+            System.out.println("Employee:" + Name + "Performance has been added");
+
+            performanceRepository.save(performance);    // Add in Performance Database
+            System.out.println("Employee Performance Added");
+        } else {
+            System.out.println("Data is Empty or Employee ID is not provided");
+        }
     }
 
     // ALL PUT METHODS //
     // Updates Employee Data
     public void updateEmployee(Integer id, Data data) {
-        databaseRepository.save(data);
+        // data & id should not be NULL
+        if (data != null && id != null && id != 0) {
+            Optional<Data> checkData = databaseRepository.findById(id);
+            if (checkData == null) {
+                System.out.println("Employee not Found with ID:" + id);
+            } else {
+                databaseRepository.save(data);  // Updates Employee data if Employee ID is found
+            }
+        } else {
+            System.out.println("Employee data & ID should not be NULL");    // Throw exception (if ID or Data is NULL)
+        }
     }
     // Updates Employee Performance
     public void updateEmployeePerformance(Integer id, Performance performance) {
-        addEmployeePerformance(id, performance);    // Use the same above function to update Employee's Performance (Re-Usability)
+           // Use the same above function to update Employee's Performance (Re-Usability)
     }
 
     // ALL DELETE METHODS //
     // Deletes Employee Data
     public void deleteEmployee(Integer id) {
-        databaseRepository.deleteById(id);
+        // id should not be NULL and ZERO
+        if (id != null && id != 0) {
+            databaseRepository.deleteById(id);
+            System.out.println("Employee with ID:" + id + "Deleted");
+        }
     }
 }
