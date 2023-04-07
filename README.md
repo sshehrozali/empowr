@@ -1,20 +1,20 @@
-## APIs 🔧
+#### APIs 🔧
 - Admin
 - Employee
 
-## Admin 👇
+#### Admin 👇
 These are the main APIs to interact with Employee Database & Performance Database.
 - Add/remove/update/view employees
 - Add/update/view performance reviews
 - Assign employees to participate in another employee's performance review
 
-## Employee 👇
+#### Employee 👇
 These are the Employee APIs use to interact with Performance Database for adding feedback to other employee (If `employeeParticipation` is set to `true` by **Admin**
 - List of performance reviews requiring feedback
 - Submit feedback
 
 
- - ## Employee Submission
+ - #### Employee Submission
 ```
 {
     "employeeID": 1,
@@ -23,7 +23,7 @@ These are the Employee APIs use to interact with Performance Database for adding
 }
 ```
 
- - ## Performance Submission
+ - #### Performance Submission
 ```
 {
     "key": 1,
@@ -32,7 +32,7 @@ These are the Employee APIs use to interact with Performance Database for adding
 }
 ```
 
- - ## Feedback Submission
+ - #### Feedback Submission
 ```
 {
     "feedbackID": 1,
