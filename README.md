@@ -1,19 +1,19 @@
 ## APIs 🔧
-- Admin APIs
-- Employee APIs
+- Admin
+- Employee
 
-## Admin APIs 👇
+## Admin 👇
 These are the main APIs to interact with Employee Database & Performance Database.
 - Add/remove/update/view employees
 - Add/update/view performance reviews
 - Assign employees to participate in another employee's performance review
 
-## Employee APIs 👇
+## Employee 👇
 These are the Employee APIs use to interact with Performance Database for adding feedback to other employee (If `employeeParticipation` is set to `true` by **Admin**
 - List of performance reviews requiring feedback
 - Submit feedback
 
-# Database (JSON)
+
  - ## Employee Submission
 ```
 {
@@ -41,8 +41,3 @@ These are the Employee APIs use to interact with Performance Database for adding
 ```
 
 *Make sure to update and build the *Maven* again before launching the application*
-
-## License 🚩
-[MIT](https://choosealicense.com/licenses/mit/)
-
-### Made with ❤ and 💤 by Shehroz Ali.
